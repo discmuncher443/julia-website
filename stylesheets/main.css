@@ -198,3 +198,75 @@ footer {
     font-size: 0.8rem;
     color: #64748b;
 }
+
+/* Container for the cards */
+.project-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem; 
+}
+
+/* Base Card Style */
+.project-card {
+    background: white; 
+    border-radius: 16px; 
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08); 
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Header Area */
+.project-header { 
+    padding: 2rem; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* The Secret Sauce: Hidden Content */
+.project-content {
+    max-height: 0; 
+    overflow: hidden; 
+    padding: 0 2rem;
+    transition: all 0.4s ease-out; 
+    opacity: 0;
+}
+
+/* State when clicked */
+.project-card.active { 
+    border-color: #2563eb; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05); 
+}
+
+.project-card.active .project-content { 
+    max-height: 500px; /* Adjust if content is very long */
+    padding-bottom: 2rem; 
+    opacity: 1; 
+}
+
+/* Plus Button Animation */
+.btn-plus { 
+    width: 36px; height: 36px; border-radius: 50%; border: 1px solid #cbd5e1;
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.project-card.active .btn-plus { 
+    transform: rotate(45deg); 
+    background: #0f172a; 
+    color: white; 
+    border-color: #0f172a;
+}
+
+/* Skill Tags */
+.tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag { 
+    font-size: 0.7rem; 
+    padding: 0.3rem 0.7rem; 
+    background: #f1f5f9; 
+    border-radius: 4px; 
+    font-weight: 700; 
+    color: #475569;
+    text-transform: uppercase;
+}

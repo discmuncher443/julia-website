@@ -185,3 +185,16 @@ footer {
         margin-top: 2rem;
     }
 }
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+    display: block;
+}
+.stat-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: #64748b;
+}

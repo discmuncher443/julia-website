@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia Rushing | Public Health Professional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --accent: #2DD4BF;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Nav --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: radial-gradient(circle at top right, #e2e8f0, #f8fafc);
+        }
+
+        .hero-content { max-width: 700px; }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero p { font-size: 1.2rem; color: #64748b; margin-bottom: 2rem; }
+
+        .profile-img-container {
+            width: 400px;
+            height: 500px;
+            background: #cbd5e1; /* Placeholder */
+            border-radius: 20px;
+            margin-left: auto;
+            overflow: hidden;
+            box-shadow: 20px 20px 60px #d1d9e6;
+            position: relative;
+        }
+
+        .profile-img-container img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        /* --- Grid Layouts --- */
+        section { padding: 8rem 10%; }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.5rem; 
+            margin-bottom: 3rem; 
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .card h3 { margin-bottom: 0.5rem; color: var(--primary); }
+        .card .date { font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            background: var(--dark);
+            color: white;
+            border-radius: 30px;
+            padding: 4rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            margin: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--dark);
+        }
+
+        footer {
+            padding: 4rem 10%;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 8rem; }
+            .hero h1 { font-size: 3rem; }
+            .profile-img-container { width: 100%; height: 350px; margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">JULIA RUSHING.</div>
+        <div class="contact-links">
+            <a href="mailto:jrushing@unc.edu" style="text-decoration: none; color: var(--dark); font-weight: 600;">Get In Touch</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <span class="badge">MPH CANDIDATE @ UNC GILLINGS</span>
+            <h1>Advancing health equity through data & advocacy.</h1>
+            <p>Specializing in Maternal, Child, and Family Health with a focus on evidence-based policy and reproductive justice.</p>
+            <div style="display: flex; gap: 1rem;">
+                <a href="#experience" style="background: var(--dark); color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none;">View Experience</a>
+                <a href="https://www.linkedin.com/in/julia-rushing" target="_blank" style="padding: 1rem 2rem; border-radius: 10px; text-decoration: none; border: 1px solid #ccc; color: var(--dark);">LinkedIn</a>
+            </div>
+        </div>
+        <div class="profile-img-container" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000" alt="Julia Rushing">
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 data-aos="fade-right">Professional Impact</h2>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <span class="date">May - Aug 2025</span>
+                <h3>Health Policy Intern</h3>
+                <p><strong>Health Policy Institute of Ohio</strong></p>
+                <p style="margin-top: 1rem;">Led literature reviews on juvenile justice mental health and monitored state budget provisions for strategic advocacy.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <span class="date">May - Aug 2023</span>
+                <h3>Health Education Intern</h3>
+                <p><strong>The Farm at Trinity Health</strong></p>
+                <p style="margin-top: 1rem;">Designed youth nutrition curricula and evaluated program outcomes through qualitative community interviews.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <span class="date">2021 - 2024</span>
+                <h3>NCAA DI Athlete</h3>
+                <p><strong>Miami University</strong></p>
+                <p style="margin-top: 1rem;">Cross Country & Track. Developed high-level resilience, time management, and team leadership skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="skills-container" data-aos="fade-up">
+            <h2 style="color: white;">Expertise & Toolkit</h2>
+            <div style="margin-top: 2rem;">
+                <p style="color: var(--accent); margin-bottom: 1rem; font-weight: 700;">DATA & ANALYSIS</p>
+                <div class="skill-tag">SAS / Stata / SPSS</div>
+                <div class="skill-tag">Tableau Visualization</div>
+                <div class="skill-tag">Binary Logistic Regression</div>
+                <div class="skill-tag">NHANES Data Management</div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <p style="color: var(--accent); margin-bottom: 1rem; font-weight: 700;">STRATEGY & DESIGN</p>
+                <div class="skill-tag">Policy Advocacy</div>
+                <div class="skill-tag">Reproductive Justice</div>
+                <div class="skill-tag">Implementation Science</div>
+                <div class="skill-tag">Canva Infographics</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 data-aos="fade-right">Research & Projects</h2>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <h3>Gestational Diabetes Intervention</h3>
+                <p style="color: #64748b;">Gillings School of Global Public Health</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Designed a culturally tailored program for Latina women in California, including full budget and KPI planning.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3>WIC Benefit Utilization Study</h3>
+                <p style="color: #64748b;">Senior Capstone Project</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Quantitative analysis of the relationship between WIC support and health outcomes using SAS.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Julia Rushing • jrushing@unc.edu • 630-746-9935</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Icon initialization
+        lucide.createIcons();
+    </script>
+</body>
+</html>

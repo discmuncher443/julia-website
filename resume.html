@@ -1,201 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Julia Rushing | Interactive Resume Tour</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #f1f5f9;
-            --text: #1e293b;
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Resume Container */
-        .resume-container {
-            width: 800px;
-            background: white;
-            padding: 60px 80px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            position: relative;
-            transition: var(--transition);
-            z-index: 1;
-        }
-
-        /* Dynamic Shift when comment is active */
-        .resume-container.shifted {
-            transform: scale(0.95) translateX(-20px);
-            filter: blur(2px);
-            pointer-events: none;
-        }
-
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0; }
-        .section-title { 
-            font-weight: 800; border-bottom: 2px solid #f1f5f9; 
-            margin: 25px 0 10px; padding-bottom: 5px; 
-            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
-        }
-
-        .highlight {
-            cursor: pointer;
-            padding: 2px 4px;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        /* Overlay Comment Window */
-        #comment-overlay {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -40%) scale(0.9);
-            width: 400px;
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px); /* The "Glass" effect */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        #comment-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .comment-header {
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .comment-body { font-size: 1.1rem; line-height: 1.5; color: #0f172a; }
-
-        /* Timer Bar inside the Overlay */
-        .timer-track {
-            margin-top: 25px;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .timer-fill {
-            height: 100%;
-            width: 100%;
-            background: rgba(0,0,0,0.3);
-            transition: width 10s linear;
-        }
-
-        .close-hint {
-            margin-top: 15px;
-            font-size: 0.7rem;
-            color: rgba(0,0,0,0.4);
-            font-weight: 600;
-        }
-    </style>
+    <title>Julia Rushing | Interactive Resume</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./stylesheets/resume.css">
 </head>
+
 <body>
+    <script src="./scripts/resume.js" defer></script>
 
     <div class="resume-container" id="resume">
-        <h1>Julia Rushing [cite: 1]</h1>
-        <p>jrushing@unc.edu | 630-746-9935 [cite: 3]</p>
+        <a href="index.html" class="home-btn">← Back to Home</a>
+        <h1>Julia Rushing</h1>
+        <div class="contact-info">
+            jrushing@unc.edu |
+            <a href="https://www.linkedin.com/in/julia-rushing" target="_blank">www.linkedin.com/in/julia-rushing</a>
+        </div>
 
-        <div class="section-title">Summary</div>
-        <p><span class="highlight" data-title="Mission" data-text="Julia focuses on advancing evidence-based programs to reduce health disparities [cite: 6].">MPH candidate specializing in Maternal, Child, and Family Health[cite: 5].</span></p>
+        <div class="section-title">Professional Summary</div>
+        <p>
+            <span class="highlight" data-title="Expertise"
+                data-text="I'm specifically trained in Maternal, Child, and Family Health at one of the top-ranked public health schools in the US.">MPH
+                candidate specializing in Maternal, Child, and Family Health</span> at the Gillings School of Global
+            Public Health with applied experience in data analysis, policy advocacy, and public health communication.
+            Dedicated to evaluating, implementing, and advancing evidence-based programs and policies to <span
+                class="highlight" data-title="The Mission"
+                data-text="My career focus is rooted in health equity—ensuring that systemic disparities are addressed through data-driven decisions.">improve
+                health outcomes and reduce disparities</span>.
+        </p>
 
-        <div class="section-title">Experience</div>
-        <p><strong>Health Policy Intern</strong> | Health Policy Institute of Ohio [cite: 23, 24]<br>
-        <span class="highlight" data-title="Policy Impact" data-text="She monitored key budget provisions in Ohio's HB 96 to guide advocacy [cite: 27].">Monitored key budget provisions in Ohio's HB 96[cite: 27].</span></p>
+        <div class="section-title">Education</div>
+        <div class="entry">
+            <div class="entry-header">
+                <span>University of North Carolina at Chapel Hill, Gillings School of Global Public Health</span>
+                <span>May 2026</span>
+            </div>
+            <div class="entry-sub">Master of Public Health, Maternal, Child, and Family Health</div>
+            <div class="coursework"><strong>Relevant Coursework:</strong> Data Analysis for Public Health, Public Health
+                Systems, <span class="highlight" data-title="Policy Translation"
+                    data-text="Equipped with specialized knowledge to navigate complex family health policies, bridging the gap between academic research and actionable legislation.">Policy
+                    & Advocacy</span>, Research Methods and Measures, Implementation Research and Practice,
+                Abortion Care and Policy, Data Visualization, <span class="highlight" data-title="Applied Evaluation"
+                    data-text="Trained to design rigorous evaluation frameworks that ensure public health interventions deliver measurable, real-world impact.">Monitoring
+                    and Evaluation</span>, International Family Planning
+                and Reproductive Health</div>
+        </div>
 
-        <div class="section-title">Athletics</div>
-        <p><strong>NCAA Division I Athlete</strong> | Miami University [cite: 49, 50]<br>
-        <span class="highlight" data-title="Resilience" data-text="Balancing DI training with academics demonstrates high-level time management [cite: 52].">Balanced academic demands with a rigorous DI training schedule[cite: 52].</span></p>
+        <div class="entry">
+            <div class="entry-header">
+                <span>Miami University</span>
+                <span>May 2024</span>
+            </div>
+            <div class="entry-sub">Bachelor of Arts in Public Health, Human Disease and Epidemiology | Magna Cum Laude
+            </div>
+            <div class="coursework"><strong>Relevant Coursework:</strong> Community Health Perspectives, Microorganisms
+                & Human Disease, Philosophy of Science and Culture, Medical Anthropology, Applied Health Behavior
+                Change, Health Policy, Environment and Public Health, <span class="highlight"
+                    data-title="Quantitative Foundation"
+                    data-text="Built a strong analytical foundation, paving the way for advanced data modeling and statistical analysis at the graduate level.">Fundamentals
+                    of Epidemiology</span>, Data & Decision
+                Making</div>
+        </div>
+        <div class="section-title">Skills</div>
+        <div class="skills-list">
+            <strong>Policy Advocacy & Communication:</strong> Conducting literature reviews and needs assessments;
+            developing policy briefs, fact sheets, infographics, and presentations with Canva; engaging stakeholders as
+            co-creators<br><br>
+            <strong>Data Analysis & Visualization:</strong> Management and analysis of large datasets with Excel, Stata,
+            SAS, and SPSS; <span class="highlight" data-title="Data Storytelling"
+                data-text="Proficient in translating complex datasets into accessible visual insights for diverse stakeholders.">dashboard
+                design and data storytelling with Tableau</span><br><br>
+            <strong>Frameworks & Approaches:</strong> Social determinants of health, community-engaged research, applied
+            implementation science, and reproductive justice
+        </div>
+
+        <div class="section-title">Professional Experience</div>
+        <div class="entry">
+            <div class="entry-header">
+                <span>Health Policy Intern</span>
+                <span>May-August 2025</span>
+            </div>
+            <div class="entry-sub">The Health Policy Institute of Ohio | Columbus, Ohio</div>
+            <ul>
+                <li>Conducted a literature review on mental health outcomes among juvenile justice–involved youth to
+                    assess population needs and inform policy recommendations for external stakeholders</li>
+                <li>Monitored key budget provisions in Ohio’s HB 96 and produced internal briefs to guide organizational
+                    advocacy strategies</li>
+                <li><span class="highlight" data-title="Quality Assurance"
+                        data-text="Ensuring clarity and accuracy in data snapshots is critical for maintaining credibility with both policymakers and community stakeholders.">Reviewed
+                        and edited policy briefs, community needs assessments, and data snapshots</span> to ensure
+                    clarity, accuracy, and alignment with organizational standards</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span>Health Education Intern</span>
+                <span>May-August 2023</span>
+            </div>
+            <div class="entry-sub">The Farm at Trinity Health | Ann Arbor, Michigan</div>
+            <ul>
+                <li>Designed and implemented educational materials for youth nutrition programs to improve participant
+                    engagement and support health‑literacy goals</li>
+                <li>Evaluated program outcomes by conducting and analyzing participant interviews and surveys,
+                    generating insights to inform curriculum refinement and community outreach strategy</li>
+                <li><span class="highlight" data-title="Stakeholder Engagement"
+                        data-text="Interdisciplinary collaboration  was prioritized to ensure our interventions were truly community-centered.">Built
+                        trusting relationships with community members and healthcare providers</span> to support
+                    interdisciplinary collaboration and effective program delivery</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Data Analysis & Program Design Projects</div>
+        <div class="entry">
+            <div class="entry-header">
+                <span>Developing, Implementing, and Evaluating a Program to Reduce Gestational Diabetes Among Latina
+                    Women in California</span>
+                <span>2024-2025</span>
+            </div>
+            <div class="entry-sub">Gillings School of Global Public Health Core Group Project</div>
+            <ul>
+                <li>Collaborated with a four‑member team to perform a systems analysis of determinants of health
+                    inequities among Latina women in California</li>
+                <li>Drew on community strengths and needs to <span class="highlight"
+                        data-title="Culturally Tailored Care"
+                        data-text="This project utilized a community-engaged approach to ensure interventions were appropriate and effective.">design
+                        a culturally tailored intervention for reducing gestational diabetes disparities</span></li>
+                <li>Synthesized evidence from existing programs to develop an implementation strategy and comprehensive
+                    evaluation plan, including a Gantt chart, program budget, and key performance indicators</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span>The Relationship Between WIC Benefit Utilization During Pregnancy and Gestational Diabetes</span>
+                <span>2024</span>
+            </div>
+            <div class="entry-sub">Miami University Senior Capstone Project</div>
+            <ul>
+                <li><span class="highlight" data-title="Quantitative Analysis"
+                        data-text="Demonstrates high-level proficiency in managing and analyzing large-scale federal health datasets.">Cleaned
+                        and prepared NHANES datasets in SAS</span>; conducted univariate analyses and binary logistic
+                    regression to assess group differences and adjust for confounding</li>
+                <li>Translated quantitative findings into actionable recommendations for WIC program improvement and
+                    presented results at a research poster forum</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Leadership Experience</div>
+        <div class="entry">
+            <div class="entry-header">
+                <span>NCAA Division I Cross Country and Track and Field Athlete</span>
+                <span>2020-2024</span>
+            </div>
+            <div class="entry-sub">Miami University</div>
+            <ul>
+                <li><span class="highlight" data-title="Work Ethic"
+                        data-text="Balancing DI sports with a Magna Cum Laude degree proves exceptional time management, discipline, and dedication.">Balanced
+                        full‑time academic demands with a rigorous Division I training and competition schedule</span>,
+                    demonstrating strong time management and accountability</li>
+                <li>Navigated high‑pressure performance environments and sustained long‑term training goals, building
+                    resilience and adaptability</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span>Student-Athlete Advisory Board Elected Council Member</span>
+                <span>2021-2024</span>
+            </div>
+            <div class="entry-sub">Redhawk Council, Miami University</div>
+            <ul>
+                <li><span class="highlight" data-title="Consensus Building"
+                        data-text="Acted as a vital bridge between administration and the student body to achieve collective goals.">Worked
+                        with a diverse team of student‑athletes and athletics staff to advance shared priorities</span>,
+                    developing communication and consensus‑building skills</li>
+                <li>Led agenda development and event coordination for council initiatives, applying planning,
+                    delegation, and collaborative decision‑making</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span>Farmer’s Market Outreach Volunteer</span>
+                <span>2021-2022</span>
+            </div>
+            <div class="entry-sub">Oxford, Ohio</div>
+            <ul>
+                <li>Delivered educational presentations to student groups to increase awareness of local food access
+                    resources, refining accessible communication and public speaking abilities</li>
+                <li>Assisted community members in identifying and navigating health and nutrition resources, gaining
+                    experience in outreach and problem solving</li>
+            </ul>
+        </div>
     </div>
 
     <div id="comment-overlay">
         <span class="comment-header" id="overlay-title"></span>
         <div class="comment-body" id="overlay-body"></div>
-        <div class="timer-track"><div class="timer-fill" id="timer"></div></div>
+        <div class="timer-track">
+            <div class="timer-fill" id="timer"></div>
+        </div>
         <div class="close-hint">Click anywhere to dismiss</div>
     </div>
-
-    <script>
-        const colors = [
-            'rgba(254, 240, 138, 0.9)', // Yellow
-            'rgba(187, 247, 208, 0.9)', // Green
-            'rgba(191, 219, 254, 0.9)', // Blue
-            'rgba(251, 207, 232, 0.9)', // Pink
-            'rgba(221, 214, 254, 0.9)'  // Purple
-        ];
-        
-        let timerOut;
-
-        // Randomize highlights on load
-        document.querySelectorAll('.highlight').forEach((el, i) => {
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            el.style.backgroundColor = color.replace('0.9', '0.4'); // Lighter for the text highlight
-            
-            el.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openComment(el.dataset.title, el.dataset.text, color);
-            });
-        });
-
-        function openComment(title, text, color) {
-            const overlay = document.getElementById('comment-overlay');
-            const resume = document.getElementById('resume');
-            const timer = document.getElementById('timer');
-
-            // Reset Timer
-            clearTimeout(timerOut);
-            timer.style.transition = 'none';
-            timer.style.width = '100%';
-
-            // Set Content & Style
-            document.getElementById('overlay-title').innerText = title;
-            document.getElementById('overlay-body').innerText = text;
-            overlay.style.backgroundColor = color;
-            
-            // Show
-            overlay.classList.add('active');
-            resume.classList.add('shifted');
-
-            // Animate Timer
-            setTimeout(() => {
-                timer.style.transition = 'width 10s linear';
-                timer.style.width = '0%';
-            }, 50);
-
-            timerOut = setTimeout(closeComment, 10000);
-        }
-
-        function closeComment() {
-            document.getElementById('comment-overlay').classList.remove('active');
-            document.getElementById('resume').classList.remove('shifted');
-            clearTimeout(timerOut);
-        }
-
-        // Close on background click
-        document.addEventListener('click', closeComment);
-    </script>
 </body>
+
 </html>

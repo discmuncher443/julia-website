@@ -10,17 +10,20 @@ let timerOut;
 
 document.querySelectorAll('.highlight').forEach((el) => {
     const theme = colorThemes[Math.floor(Math.random() * colorThemes.length)];
-    
+
     el.style.backgroundColor = theme.bg;
     el.style.borderBottom = `2px dashed ${theme.border}`;
 
     el.addEventListener('mouseenter', () => el.style.backgroundColor = theme.bg.replace('0.4', '0.6').replace('0.5', '0.7').replace('0.6', '0.8'));
     el.addEventListener('mouseleave', () => el.style.backgroundColor = theme.bg);
 
-    el.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openComment(el.dataset.title, el.dataset.text, theme.overlay);
-    });
+    // Only attach the click event if it DOES NOT have the 'no-op' class
+    if (!el.classList.contains('no-op')) {
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openComment(el.dataset.title, el.dataset.text, theme.overlay);
+        });
+    } 
 });
 
 function openComment(title, text, color) {
@@ -35,7 +38,7 @@ function openComment(title, text, color) {
     document.getElementById('overlay-title').innerText = title;
     document.getElementById('overlay-body').innerText = text;
     overlay.style.backgroundColor = color;
-    
+
     overlay.classList.add('active');
     resume.classList.add('shifted');
 
@@ -54,3 +57,7 @@ function closeComment() {
 }
 
 document.addEventListener('click', closeComment);
+
+function closeWelcomeModal() {
+    document.getElementById('welcome-modal').classList.add('hidden');
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia Rushing | Interactive Resume Tour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --text: #1e293b;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Resume Container */
+        .resume-container {
+            width: 800px;
+            background: white;
+            padding: 60px 80px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        /* Dynamic Shift when comment is active */
+        .resume-container.shifted {
+            transform: scale(0.95) translateX(-20px);
+            filter: blur(2px);
+            pointer-events: none;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0; }
+        .section-title { 
+            font-weight: 800; border-bottom: 2px solid #f1f5f9; 
+            margin: 25px 0 10px; padding-bottom: 5px; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+        }
+
+        .highlight {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        /* Overlay Comment Window */
+        #comment-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%) scale(0.9);
+            width: 400px;
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px); /* The "Glass" effect */
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        #comment-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .comment-header {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .comment-body { font-size: 1.1rem; line-height: 1.5; color: #0f172a; }
+
+        /* Timer Bar inside the Overlay */
+        .timer-track {
+            margin-top: 25px;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .timer-fill {
+            height: 100%;
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            transition: width 10s linear;
+        }
+
+        .close-hint {
+            margin-top: 15px;
+            font-size: 0.7rem;
+            color: rgba(0,0,0,0.4);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container" id="resume">
+        <h1>Julia Rushing [cite: 1]</h1>
+        <p>jrushing@unc.edu | 630-746-9935 [cite: 3]</p>
+
+        <div class="section-title">Summary</div>
+        <p><span class="highlight" data-title="Mission" data-text="Julia focuses on advancing evidence-based programs to reduce health disparities [cite: 6].">MPH candidate specializing in Maternal, Child, and Family Health[cite: 5].</span></p>
+
+        <div class="section-title">Experience</div>
+        <p><strong>Health Policy Intern</strong> | Health Policy Institute of Ohio [cite: 23, 24]<br>
+        <span class="highlight" data-title="Policy Impact" data-text="She monitored key budget provisions in Ohio's HB 96 to guide advocacy [cite: 27].">Monitored key budget provisions in Ohio's HB 96[cite: 27].</span></p>
+
+        <div class="section-title">Athletics</div>
+        <p><strong>NCAA Division I Athlete</strong> | Miami University [cite: 49, 50]<br>
+        <span class="highlight" data-title="Resilience" data-text="Balancing DI training with academics demonstrates high-level time management [cite: 52].">Balanced academic demands with a rigorous DI training schedule[cite: 52].</span></p>
+    </div>
+
+    <div id="comment-overlay">
+        <span class="comment-header" id="overlay-title"></span>
+        <div class="comment-body" id="overlay-body"></div>
+        <div class="timer-track"><div class="timer-fill" id="timer"></div></div>
+        <div class="close-hint">Click anywhere to dismiss</div>
+    </div>
+
+    <script>
+        const colors = [
+            'rgba(254, 240, 138, 0.9)', // Yellow
+            'rgba(187, 247, 208, 0.9)', // Green
+            'rgba(191, 219, 254, 0.9)', // Blue
+            'rgba(251, 207, 232, 0.9)', // Pink
+            'rgba(221, 214, 254, 0.9)'  // Purple
+        ];
+        
+        let timerOut;
+
+        // Randomize highlights on load
+        document.querySelectorAll('.highlight').forEach((el, i) => {
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            el.style.backgroundColor = color.replace('0.9', '0.4'); // Lighter for the text highlight
+            
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openComment(el.dataset.title, el.dataset.text, color);
+            });
+        });
+
+        function openComment(title, text, color) {
+            const overlay = document.getElementById('comment-overlay');
+            const resume = document.getElementById('resume');
+            const timer = document.getElementById('timer');
+
+            // Reset Timer
+            clearTimeout(timerOut);
+            timer.style.transition = 'none';
+            timer.style.width = '100%';
+
+            // Set Content & Style
+            document.getElementById('overlay-title').innerText = title;
+            document.getElementById('overlay-body').innerText = text;
+            overlay.style.backgroundColor = color;
+            
+            // Show
+            overlay.classList.add('active');
+            resume.classList.add('shifted');
+
+            // Animate Timer
+            setTimeout(() => {
+                timer.style.transition = 'width 10s linear';
+                timer.style.width = '0%';
+            }, 50);
+
+            timerOut = setTimeout(closeComment, 10000);
+        }
+
+        function closeComment() {
+            document.getElementById('comment-overlay').classList.remove('active');
+            document.getElementById('resume').classList.remove('shifted');
+            clearTimeout(timerOut);
+        }
+
+        // Close on background click
+        document.addEventListener('click', closeComment);
+    </script>
+</body>
+</html>
